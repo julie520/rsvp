@@ -12,14 +12,11 @@ signToken = (user) => {
       id: user.id
     }
   }
-  
-  return jwt.sign({
-    iss: process.env.JWT_ISSUER,
-    sub: user.id,
-    payload,
-    iat: new Date().getTime(), // current time
-    exp: new Date().setDate(new Date().getDate() + 1) // current time + 1 day ahead
-  }, process.env.JWT_SECRET);
+  return jwt.sign(payload, process.env.JWT_SECRET, {
+    issuer: process.env.JWT_ISSUER,
+    subject: user.id,
+    expiresIn: process.env.JWT_EXPIRESIN
+  });
 }
 
 router.post('/register', [
