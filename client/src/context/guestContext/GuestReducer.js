@@ -1,7 +1,23 @@
-import {ADD_GUEST, UPDATE_GUEST, REMOVE_GUEST, TOGGLE_FILTER, SEARCH_GUEST, CLEAR_SEARCH, EDIT_GUEST, CLEAR_EDIT } from '../types';
+import {ADD_GUEST, UPDATE_GUEST, REMOVE_GUEST, TOGGLE_FILTER, SEARCH_GUEST, CLEAR_SEARCH, EDIT_GUEST, CLEAR_EDIT, GET_GUESTS, GUESTS_ERROR, GUEST_ERROR } from '../types';
 
 export default (state, { type, payload }) => {
   switch (type) {
+    case GET_GUESTS:
+      return {
+        ...state,
+        guests: payload
+      }
+    case GUESTS_ERROR:
+      return {
+        ...state,
+        errors: payload
+      }
+    case GUEST_ERROR:
+        return {
+          ...state,
+          guests: [],
+          errors: payload
+        }    
     case ADD_GUEST:
       return {
         ...state,
@@ -10,12 +26,12 @@ export default (state, { type, payload }) => {
     case UPDATE_GUEST:
       return {
         ...state,
-        guests: state.guests.map(guest => guest.id === payload.id ? payload : guest)
+        guests: state.guests.map(guest => guest._id === payload._id ? payload : guest)
       }
     case REMOVE_GUEST:
       return {
         ...state,
-        guests: state.guests.filter(guest => guest.id !== payload)
+        guests: state.guests.filter(guest => guest._id !== payload)
       }
     case EDIT_GUEST:
       return {

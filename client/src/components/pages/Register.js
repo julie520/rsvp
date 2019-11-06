@@ -8,7 +8,7 @@ const Register = ({ history }) => {
     if (userAuth) {
       history.push('/');
     }
-  }, userAuth, history);
+  }, [userAuth, history]);
 
   const [user, setUser] = useState({
     name: '',
