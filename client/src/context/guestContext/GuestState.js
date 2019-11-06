@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import GuestContext from './GuestContext';
-import gusetReducer from './GuestReducer';
+import GuestReducer from './GuestReducer';
 import { TOGGLE_FILTER, SEARCH_GUEST, CLEAR_SEARCH, ADD_GUEST,UPDATE_GUEST, REMOVE_GUEST, EDIT_GUEST, CLEAR_EDIT } from '../types';
 
 const GuestState = (props) => {
@@ -32,7 +32,7 @@ const GuestState = (props) => {
       },
     ]
   }
-  const [state, dispatch] = useReducer(gusetReducer, initialState);
+  const [state, dispatch] = useReducer(GuestReducer, initialState);
   
   const addGuest = (guest) => {
     guest.id = Date.now();
